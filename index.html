@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        html, body{
+            padding: 0;
+            margin: 0;
+            background-color:#eee; 
+        }
+        form.login-region{
+            /* 
+                1. 前景相关
+                2. 盒子相关
+                3. 背景相关
+             */
+            width: 40%;
+            height: auto;
+            padding: 20px;
+            margin: auto;
+            margin-top: 50px;
+            border: 1px solid #bbb;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        刚需:(核心需求)
+            
+            url 必须是合法的url
+        非刚需 考虑接口扩展
+        mobile 必须是合法的手机
+        cardid 必须是合法的身份证
+        bankcard 必须是合法的银行卡
+        ...
+     -->
+    <form id="loginForm" class="form-horizontal login-region" autocomplete="off">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <!-- 必须填写且符合合法邮箱地址规范 -->
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Email"
+                    data-bv-require = "true"
+                    data-bv-require-message = "* 邮箱地址为必填项"
+                    data-bv-email = "true"
+                    data-bv-email-message = "* 请输入合法的邮箱地址"
+                >
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <!-- 必须填写有数字字母下划线组成 6~12位 -->
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
+                data-bv-require = "true"
+                data-bv-require-message = "* 密码为必填项"
+                data-bv-regex = "^\w{6,12}$"
+                data-bv-regex-message = "* 密码必须由6-12位字母数字下划线组成的序列"
+            >
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="inputNickname" class="col-sm-2 control-label">Nickname</label>
+            <div class="col-sm-10">
+                <!-- 可以不填写, 若填写必须由一个字母以上构成 -->
+                <input type="password" class="form-control" id="inputNickname" placeholder="Password"
+                    data-bv-regex = "^[a-zA-Z]+$"
+                >   
+            </div>
+        </div>
+        <div class="form-group ">
+            <label for="inputCardid" class="col-sm-2 control-label">Cardid</label>
+            <div class="col-sm-10">
+                <!-- 可以不填写, 若填写必须由一个字母以上构成 -->
+                <input type="password" class="form-control" id="inputCardid" placeholder="Cardid"
+                    data-bv-require = "true"
+                    data-bv-require-message = "* 身份证号码为必填项"
+                    data-bv-cardid = "true"
+                    data-bv-cardid-message = "* 身份证号码不合法"
+                >   
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+        </div>
+    </form>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="assets\js\plugin\bootstrap-validator\bootstrap-validator-1.0.1.js"></script>
+    <script src="assets\js\plugin\bootstrap-validator\bootstrap-validator-zh.js"></script>
+    <script src="assets\js\common.js"></script>
+    <script type="text/javascript">
+        /*
+            架构思维
+             1. 移植性
+             2. 稳定性 
+             3. 维护性
+             4. 扩展性
+        */
+        $("#loginForm").bootstrapValidator({
+            raise: "keyup", // 设置触发的方式
+            errorMsg: "* validate failed",
+            language: "zh", // 用户配置语言
+        });
+    </script>
+</body>
+</html>
