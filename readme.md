@@ -9,7 +9,7 @@
     - require 必须填写
     - email 填写的内容必须是标准的email格式
     - number 必须是数字
-    - Integer 必须是整数
+    - integer 必须是整数
     - regex 必须符合正则表达式配置的格式
     - length 长度必须是多少位
 ## 扩展配置项方法
